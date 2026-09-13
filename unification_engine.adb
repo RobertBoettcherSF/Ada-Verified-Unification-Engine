@@ -135,7 +135,7 @@ package body Unification_Engine is
 
    procedure Clear (Env : out Substitution) is
    begin
-      Env.Bindings := (others => null);
+      Env.Bindings := [others => null];
    end Clear;
 
 end Unification_Engine;
