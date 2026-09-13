@@ -34,8 +34,12 @@ begin
    Put_Line ("TEST 2 -- Environment Management");
    Clear (Env);
    Check ("2.1 Clear ensures null bindings", Env.Bindings ('a') = null and Env.Bindings ('z') = null);
+   
+   pragma Warnings (Off, "*useless assignment*");
    Env.Bindings ('x') := T2;
    Clear (Env);
+   pragma Warnings (On, "*useless assignment*");
+   
    Check ("2.2 Environment strictly cleared", Env.Bindings ('x') = null);
 
    -- TEST 3 -- Unify Identical Constants
@@ -138,7 +142,11 @@ begin
    begin
       -- Attempting to cast an invalid char to Var_Name
       declare
+         pragma Warnings (Off, "*value not in range*");
+         pragma Warnings (Off, "*Constraint_Error*");
          Invalid_Var : Var_Name := 'A'; -- 'A' is not in 'a' .. 'z'
+         pragma Warnings (On, "*Constraint_Error*");
+         pragma Warnings (On, "*value not in range*");
          pragma Unreferenced (Invalid_Var);
       begin
          Check ("14.1 Constraint Error expected", False); -- Should not reach
