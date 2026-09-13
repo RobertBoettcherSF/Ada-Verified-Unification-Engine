@@ -23,7 +23,7 @@ is
    -- A Substitution environment maps variables to terms
    type Substitution_Map is array (Var_Name) of Term;
    type Substitution is record
-      Bindings : Substitution_Map := (others => null);
+      Bindings : Substitution_Map := [others => null];
    end record;
 
    -- =========================================================================
