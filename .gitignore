@@ -1,5 +1,9 @@
-# Object file
+# Object / ALI
 *.o
-
-# Ada Library Information
 *.ali
+obj/
+bin/
+gnatprove/
+*.adb.stderr
+*.adb.stdout
+*.spark
